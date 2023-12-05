@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FactoryRGModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="FactoryRGEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="FType" EntityType="FactoryRGModel.FType" />
+    <EntitySet Name="Furniture" EntityType="FactoryRGModel.Furniture" />
+    <EntitySet Name="sysdiagrams" EntityType="FactoryRGModel.sysdiagrams" />
+    <EntitySet Name="UsersInfo" EntityType="FactoryRGModel.UsersInfo" />
+    <AssociationSet Name="FK_Furniture_FType" Association="FactoryRGModel.FK_Furniture_FType">
+      <End Role="FType" EntitySet="FType" />
+      <End Role="Furniture" EntitySet="Furniture" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="FType">
+    <Key>
+      <PropertyRef Name="TypeID" />
+    </Key>
+    <Property Name="TypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Название" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Furniture" Relationship="FactoryRGModel.FK_Furniture_FType" FromRole="FType" ToRole="Furniture" />
+  </EntityType>
+  <EntityType Name="Furniture">
+    <Key>
+      <PropertyRef Name="FurnID" />
+    </Key>
+    <Property Name="FurnID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Название" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Материал" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="TypeID" Type="Int32" />
+    <Property Name="Стиль" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Кол_во_на_складе" Type="Int32" />
+    <NavigationProperty Name="FType" Relationship="FactoryRGModel.FK_Furniture_FType" FromRole="Furniture" ToRole="FType" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="UsersInfo">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="Login" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <Association Name="FK_Furniture_FType">
+    <End Type="FactoryRGModel.FType" Role="FType" Multiplicity="0..1" />
+    <End Type="FactoryRGModel.Furniture" Role="Furniture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FType">
+        <PropertyRef Name="TypeID" />
+      </Principal>
+      <Dependent Role="Furniture">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,36 @@
+﻿<Page x:Class="Factory.Pages.GeneralPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Factory.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="GeneralPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button x:Name="ViewBT" Content="Viewing TB" Grid.Row="1" Click="ViewBT_Click"></Button>
+        <Button x:Name="AddBT" Content="Add content" Grid.Row="2" Click="AddBT_Click"></Button>
+        <StackPanel Margin="20" Grid.Row="2" Grid.Column="1">
+            <TextBlock Width="500" Text="Название"></TextBlock>
+            <TextBox x:Name="Title" Width="500"></TextBox>
+            <TextBlock Width="500" Text="Материал"></TextBlock>
+            <TextBox x:Name="Material" Width="500"></TextBox>
+            <TextBlock Width="500" Text="Стиль"></TextBlock>
+            <TextBox x:Name="Style" Width="500"></TextBox>
+            <TextBlock Width="500" Text="Кол-во на складе"></TextBlock>
+            <TextBox x:Name="Count" Width="500"></TextBox>
+        </StackPanel>
+        <Frame Name="MainFrame" Grid.Column="1" Grid.Row="1" NavigationUIVisibility="Hidden"></Frame>
+    </Grid>
+</Page>
